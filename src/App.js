@@ -5,6 +5,7 @@ import { Route, Switch, BrowserRouter, NavLink, Redirect } from 'react-router-do
 import Courses from './containers/Courses/Courses';
 import Course from './containers/Course/Course';
 import Users from './containers/Users/Users';
+import NoMatch from './components/NoMatch/NoMatch';
 
 class App extends Component {
   render () {
@@ -16,7 +17,7 @@ class App extends Component {
               <ul>
                 <li>
                   <NavLink
-                    to="/users/"
+                    to="/users"
                     exact
                     activeClassName="my-active"
                     activeStyle={{
@@ -27,7 +28,7 @@ class App extends Component {
                 </li>
                 <li>
                   <NavLink
-                    to="/courses/"
+                    to="/courses"
                     exact
                     >courses</NavLink>
                 </li>
@@ -46,9 +47,13 @@ class App extends Component {
           </ol>
           <Switch>
             <Route path="/users" component={Users} />
+            // <Route path="/courses/:courseId" component={Course} />
+
             <Route path="/courses" component={Courses} />
+
             <Redirect from="/all-courses" to="/courses" />
-            <Route render={() => <h1>Not found</h1>}/>
+            // <Route render={() => <h1>Not found</h1>}/>
+            <Route component={NoMatch} />
           </Switch>
         </div>
       </BrowserRouter>

@@ -14,9 +14,9 @@ class Courses extends Component {
         ]
     }
 
-    courseSelectedHandler = ( id ) => {
-      this.props.history.push({pathname: '/courses/' + id});
-    }
+    // courseSelectedHandler = ( id ) => {
+    //   this.props.history.push({pathname: '/courses/' + id});
+    // }
 
     render () {
       console.log(this.props);
@@ -27,28 +27,35 @@ class Courses extends Component {
                     {
                         this.state.courses.map( course => {
                             return (
-                              // <Link to={'/' + course.id} key={course.id}>
-                                <Course
-                                  key={course.id}
-                                  clicked={() => this.courseSelectedHandler(course.id)}
-                                  title={course.title}
-                                  id={course.id}
-                                  currentId={this.props.location.pathname}
-                                  />
-                                // <article
-                                //   className="Course"
+                              <Link
+                                to={{
+                                  pathname: this.props.match.url + '/' + course.id,
+                                  search: '?title=' + course.title
+                                }}
+                                key={course.id}>
+                                { /*// <Course
                                 //   key={course.id}
                                 //   clicked={() => this.courseSelectedHandler(course.id)}
-                                //   >{course.title}</article>
-                              // </Link>
+                                //   title={course.title}
+                                //   id={course.id}
+                                //   currentId={this.props.location.pathname}
+                                //   />
+                                */}
+                                <article
+                                  className="Course"
+                                  >{course.title}</article>
+                              </Link>
                             );
                         } )
                     }
                 </section>
-                <Route path={this.props.match.url + '/:id'} exact component={Course} />
+                { /*// <Route path={this.props.match.url + '/:id'} exact component={Course} /> */}
+                <Route path={this.props.match.url + '/courseId'} component={Course} />
+
             </div>
         );
     }
 }
 
 export default Courses;
+// clicked={() => this.courseSelectedHandler(course.id)}

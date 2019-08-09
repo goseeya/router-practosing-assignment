@@ -3,6 +3,7 @@ import { Route, Switch, BrowserRouter, NavLink } from 'react-router-dom';
 
 
 import Courses from './containers/Courses/Courses';
+import Course from './containers/Course/Course';
 import Users from './containers/Users/Users';
 
 class App extends Component {
@@ -15,7 +16,7 @@ class App extends Component {
               <ul>
                 <li>
                   <NavLink
-                    to="/users"
+                    to="/users/"
                     exact
                     activeClassName="my-active"
                     activeStyle={{
@@ -26,7 +27,7 @@ class App extends Component {
                 </li>
                 <li>
                   <NavLink
-                    to="/courses"
+                    to="/courses/"
                     exact
                     >courses</NavLink>
                 </li>
@@ -46,6 +47,7 @@ class App extends Component {
           <Switch>
             <Route path="/users" component={Users} />
             <Route path="/courses" component={Courses} />
+            <Route render={() => <h1>Not found</h1>}/>
           </Switch>
         </div>
       </BrowserRouter>
